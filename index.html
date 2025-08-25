@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Savings Calculator - Start Building Your Financial Future Today</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: black;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: right;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('/landing/image.png');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out;
+            text-align: right;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: #333;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 40px 30px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            padding: 80px 0;
+            background: transparent;
+            color: white;
+        }
+        
+        .benefits-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .benefits-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .benefit-item::before {
+            content: '✓';
+            background: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .benefits-visual {
+            position: relative;
+            text-align: center;
+        }
+        
+        .calculator-preview {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .calculator-preview h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .preview-numbers {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        
+        /* Social Proof */
+        .social-proof {
+            padding: 60px 0;
+            background: #f8f9fa;
+            text-align: center;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #b31923;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        /* Form Section */
+        .form-section {
+            padding: 80px 0;
+            background: transparent;
+            text-align: center;
+        }
+        
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .form-section h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .form-section .subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+        
+        /* MailerLite Form Styles Override */
+        #mlb2-30048369.ml-form-embedContainer {
+            background: transparent !important;
+        }
+        
+        #mlb2-30048369 .ml-form-embedWrapper {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+        
+        #mlb2-30048369 .ml-form-embedBody {
+            padding: 0 !important;
+        }
+        
+        #mlb2-30048369 .ml-form-embedContent h4 {
+            font-size: 2rem !important;
+            color: #333 !important;
+            margin-bottom: 15px !important;
+        }
+        
+        #mlb2-30048369 .ml-form-embedContent p {
+            font-size: 1.1rem !important;
+            color: #666 !important;
+            margin-bottom: 30px !important;
+        }
+        
+        #mlb2-30048369 input[type="email"] {
+            font-size: 1.1rem !important;
+            padding: 15px 20px !important;
+            border-radius: 50px !important;
+            border: 2px solid #e1e5e9 !important;
+            margin-bottom: 20px !important;
+        }
+        
+        #mlb2-30048369 button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52) !important;
+            border: none !important;
+            border-radius: 50px !important;
+            padding: 15px 40px !important;
+            font-size: 1.1rem !important;
+            font-weight: 600 !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        #mlb2-30048369 button:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4) !important;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .calculator-section{
+            padding: 80px 0;
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        .calculator-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .benefits-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .form-container {
+                margin: 0 20px;
+                padding: 30px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Take Control of Your Financial
+                        Future</h1>
+                <p>Discover exactly how much you need to save each month to reach your financial goals with our free, easy-to-use savings calculator.</p>
+                <a href="#calculator" class="cta-button">Get Your Free Calculator Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why You Need This Calculator</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="60px" height="60px" viewBox="0 0 16 16" fill="none">
+<path d="M8.16923 2.00234C8.11301 2.00078 8.0566 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14C11.3137 14 14 11.3137 14 8C14 7.9434 13.9992 7.88699 13.9977 7.83077L15.7642 6.06422C15.9182 6.68407 16 7.33249 16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0C8.66751 0 9.31593 0.0817526 9.93578 0.235791L8.16923 2.00234Z" fill="#000000"/>
+<path d="M4 7.99996C4 6.13612 5.27477 4.57002 7 4.12598V6.26752C6.4022 6.61333 6 7.25968 6 7.99996C6 9.10453 6.89543 9.99996 8 9.99996C8.74028 9.99996 9.38663 9.59776 9.73244 8.99996H11.874C11.4299 10.7252 9.86384 12 8 12C5.79086 12 4 10.2091 4 7.99996Z" fill="#000000"/>
+<path d="M14 2L13 0L10 3V4.58579L7.79289 6.79289L9.20711 8.20711L11.4142 6H13L16 3L14 2Z" fill="#000000"/>
+</svg></div>
+                    <h3>Bonus Money-Saving Tips</h3>
+                    <p>Define your savings targets with precision and see exact monthly savings amounts plus tailored money-saving tips.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="78px" height="85px" viewBox="0 0 24 24" fill="none">
+<path d="M11.7255 17.1019C11.6265 16.8844 11.4215 16.7257 11.1734 16.6975C10.9633 16.6735 10.7576 16.6285 10.562 16.5636C10.4743 16.5341 10.392 16.5019 10.3158 16.4674L10.4424 16.1223C10.5318 16.1622 10.6239 16.1987 10.7182 16.2317L10.7221 16.2331L10.7261 16.2344C11.0287 16.3344 11.3265 16.3851 11.611 16.3851C11.8967 16.3851 12.1038 16.3468 12.2629 16.2647L12.2724 16.2598L12.2817 16.2544C12.5227 16.1161 12.661 15.8784 12.661 15.6021C12.661 15.2955 12.4956 15.041 12.2071 14.9035C12.062 14.8329 11.8559 14.7655 11.559 14.6917C11.2545 14.6147 10.9987 14.533 10.8003 14.4493C10.6553 14.3837 10.5295 14.279 10.4161 14.1293C10.3185 13.9957 10.2691 13.7948 10.2691 13.5319C10.2691 13.2147 10.3584 12.9529 10.5422 12.7315C10.7058 12.5375 10.9381 12.4057 11.2499 12.3318C11.4812 12.277 11.6616 12.1119 11.7427 11.8987C11.8344 12.1148 12.0295 12.2755 12.2723 12.3142C12.4751 12.3465 12.6613 12.398 12.8287 12.4677L12.7122 12.8059C12.3961 12.679 12.085 12.6149 11.7841 12.6149C10.7848 12.6149 10.7342 13.3043 10.7342 13.4425C10.7342 13.7421 10.896 13.9933 11.1781 14.1318L11.186 14.1357L11.194 14.1393C11.3365 14.2029 11.5387 14.2642 11.8305 14.3322C12.1322 14.4004 12.3838 14.4785 12.5815 14.5651L12.5856 14.5669L12.5897 14.5686C12.7365 14.6297 12.8624 14.7317 12.9746 14.8805L12.9764 14.8828L12.9782 14.8852C13.0763 15.012 13.1261 15.2081 13.1261 15.4681C13.1261 15.7682 13.0392 16.0222 12.8604 16.2447C12.7053 16.4377 12.4888 16.5713 12.1983 16.6531C11.974 16.7163 11.8 16.8878 11.7255 17.1019Z" fill="#000000"/>
+<path d="M11.9785 18H11.497C11.3893 18 11.302 17.9105 11.302 17.8V17.3985C11.302 17.2929 11.2219 17.2061 11.1195 17.1944C10.8757 17.1667 10.6399 17.115 10.412 17.0394C10.1906 16.9648 9.99879 16.8764 9.83657 16.7739C9.76202 16.7268 9.7349 16.6312 9.76572 16.5472L10.096 15.6466C10.1405 15.5254 10.284 15.479 10.3945 15.5417C10.5437 15.6262 10.7041 15.6985 10.8755 15.7585C11.131 15.8429 11.3762 15.8851 11.611 15.8851C11.8129 15.8851 11.9572 15.8628 12.0437 15.8181C12.1302 15.7684 12.1735 15.6964 12.1735 15.6021C12.1735 15.4929 12.1158 15.411 12.0004 15.3564C11.8892 15.3018 11.7037 15.2422 11.4442 15.1777C11.1104 15.0933 10.8323 15.0039 10.6098 14.9096C10.3873 14.8103 10.1936 14.6514 10.0288 14.433C9.86396 14.2096 9.78156 13.9092 9.78156 13.5319C9.78156 13.095 9.91136 12.7202 10.1709 12.4074C10.4049 12.13 10.7279 11.9424 11.1401 11.8447C11.2329 11.8227 11.302 11.7401 11.302 11.6425V11.2C11.302 11.0895 11.3893 11 11.497 11H11.9785C12.0862 11 12.1735 11.0895 12.1735 11.2V11.6172C12.1735 11.7194 12.2487 11.8045 12.3471 11.8202C12.7082 11.8777 13.0255 11.9866 13.2989 12.1469C13.3765 12.1924 13.4073 12.2892 13.3775 12.3756L13.0684 13.2725C13.0275 13.3914 12.891 13.4417 12.7812 13.3849C12.433 13.2049 12.1007 13.1149 11.7841 13.1149C11.4091 13.1149 11.2216 13.2241 11.2216 13.4425C11.2216 13.5468 11.2773 13.6262 11.3885 13.6809C11.4998 13.7305 11.6831 13.7851 11.9386 13.8447C12.2682 13.9192 12.5464 14.006 12.773 14.1053C12.9996 14.1996 13.1953 14.356 13.3602 14.5745C13.5291 14.7929 13.6136 15.0908 13.6136 15.4681C13.6136 15.8851 13.4879 16.25 13.2365 16.5628C13.0176 16.8354 12.7145 17.0262 12.3274 17.1353C12.2384 17.1604 12.1735 17.2412 12.1735 17.3358V17.8C12.1735 17.9105 12.0862 18 11.9785 18Z" fill="#000000"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M9.59235 5H13.8141C14.8954 5 14.3016 6.664 13.8638 7.679L13.3656 8.843L13.2983 9C13.7702 8.97651 14.2369 9.11054 14.6282 9.382C16.0921 10.7558 17.2802 12.4098 18.1256 14.251C18.455 14.9318 18.5857 15.6958 18.5019 16.451C18.4013 18.3759 16.8956 19.9098 15.0182 20H8.38823C6.51033 19.9125 5.0024 18.3802 4.89968 16.455C4.81587 15.6998 4.94656 14.9358 5.27603 14.255C6.12242 12.412 7.31216 10.7565 8.77823 9.382C9.1696 9.11054 9.63622 8.97651 10.1081 9L10.0301 8.819L9.54263 7.679C9.1068 6.664 8.5101 5 9.59235 5Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.2983 9.75C13.7125 9.75 14.0483 9.41421 14.0483 9C14.0483 8.58579 13.7125 8.25 13.2983 8.25V9.75ZM10.1081 8.25C9.69391 8.25 9.35812 8.58579 9.35812 9C9.35812 9.41421 9.69391 9.75 10.1081 9.75V8.25ZM15.9776 8.64988C16.3365 8.44312 16.4599 7.98455 16.2531 7.62563C16.0463 7.26671 15.5878 7.14336 15.2289 7.35012L15.9776 8.64988ZM13.3656 8.843L13.5103 9.57891L13.5125 9.57848L13.3656 8.843ZM10.0301 8.819L10.1854 8.08521L10.1786 8.08383L10.0301 8.819ZM8.166 7.34357C7.80346 7.14322 7.34715 7.27469 7.1468 7.63722C6.94644 7.99976 7.07791 8.45607 7.44045 8.65643L8.166 7.34357ZM13.2983 8.25H10.1081V9.75H13.2983V8.25ZM15.2289 7.35012C14.6019 7.71128 13.9233 7.96683 13.2187 8.10752L13.5125 9.57848C14.3778 9.40568 15.2101 9.09203 15.9776 8.64988L15.2289 7.35012ZM13.2209 8.10709C12.2175 8.30441 11.1861 8.29699 10.1854 8.08525L9.87486 9.55275C11.0732 9.80631 12.3086 9.81521 13.5103 9.57891L13.2209 8.10709ZM10.1786 8.08383C9.47587 7.94196 8.79745 7.69255 8.166 7.34357L7.44045 8.65643C8.20526 9.0791 9.02818 9.38184 9.88169 9.55417L10.1786 8.08383Z" fill="#000000"/>
+</svg></div>
+                    <h3>Smart Calculations</h3>
+                    <p>Get exact monthly savings amounts based on your timeline, dependences, expenses and financial goals. No guesswork required.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="60px" height="60px" viewBox="0 0 16 16">
+    <path d="M0 14h16v2H0v-2zm8.5-8l4-4H11V0h5v5h-2V3.5L9.5 8l-1 1-2-2-5 5L0 10.5 6.5 4 8 5.5l.5.5z" fill-rule="evenodd"/>
+</svg></div>
+                    <h3>Grow with an intuitive guide</h3>
+                    <p>Get personalized money-saving tips and strategies to help you grow your savings</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <div class="benefits-content">
+                <div class="benefits-text">
+                    <h2>Transform Your Savings Strategy</h2>
+                    <div class="benefit-item">Calculate exact monthly savings needed for financial stability</div>
+                    <div class="benefit-item">Factor in dependences and stability of income</div>
+                    <div class="benefit-item">Get bonus money-saving tips and strategies</div>
+                </div>
+                <div class="benefits-visual">
+                    <div class="calculator-preview floating">
+                        <h3>Sample Calculation</h3>
+                        <div class="preview-numbers">$500/mo savings with $2,500/mo expenses</div>
+                        <p>achieves a $15,000 goal in<br>30 months that covers 6 months of expenses</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section">
+        <div class="container"> 
+            <h2 class="section-title">About the Savings Calculator</h2>
+            <p>The Savings Calculator is an online tool that helps you calculate exactly how much you need to save each month in order to reach your financial goals. It takes into account your income, expenses, dependents, and desired savings amount to give you a personalized calculation.</p>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section" id="calculator">
+        <div class="container">
+            <h2>Get Your Free Savings Calculator</h2>
+            <p class="subtitle">Enter your email below and we'll send you the calculator plus bonus money-saving tips</p>
+            
+            <div class="form-container">
+                <!-- MailerLite Embedded Form -->
+                <style type="text/css">@import url("https://assets.mlcdn.com/fonts.css?version=1755584");</style>
+                <style type="text/css">
+                /* LOADER */
+                .ml-form-embedSubmitLoad {
+                  display: inline-block;
+                  width: 20px;
+                  height: 20px;
+                }
+
+                .g-recaptcha {
+                transform: scale(1);
+                -webkit-transform: scale(1);
+                transform-origin: 0 0;
+                -webkit-transform-origin: 0 0;
+                height: 20px;
+                }
+
+                .sr-only {
+                  position: absolute;
+                  width: 1px;
+                  height: 1px;
+                  padding: 0;
+                  margin: -1px;
+                  overflow: hidden;
+                  clip: rect(0,0,0,0);
+                  border: 0;
+                }
+
+                .ml-form-embedSubmitLoad:after {
+                  content: " ";
+                  display: block;
+                  width: 11px;
+                  height: 11px;
+                  margin: 1px;
+                  border-radius: 50%;
+                  border: 4px solid #fff;
+                border-color: #ffffff #ffffff #ffffff transparent;
+                animation: ml-form-embedSubmitLoad 1.2s linear infinite;
+                }
+                @keyframes ml-form-embedSubmitLoad {
+                  0% {
+                  transform: rotate(0deg);
+                  }
+                  100% {
+                  transform: rotate(360deg);
+                  }
+                }
+                  #mlb2-30048369.ml-form-embedContainer {
+                    box-sizing: border-box;
+                    display: table;
+                    margin: 0 auto;
+                    position: static;
+                    width: 100% !important;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer h4,
+                  #mlb2-30048369.ml-form-embedContainer p,
+                  #mlb2-30048369.ml-form-embedContainer span,
+                  #mlb2-30048369.ml-form-embedContainer button {
+                    text-transform: none !important;
+                    letter-spacing: normal !important;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper {
+                    background-color: #dcdada;
+                    
+                    border-width: 0px;
+                    border-color: transparent;
+                    border-radius: 4px;
+                    border-style: solid;
+                    box-sizing: border-box;
+                    display: inline-block !important;
+                    margin: 0;
+                    padding: 0;
+                    position: relative;
+                          }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper.embedPopup,
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper.embedDefault { width: 400px; }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper.embedForm { max-width: 400px; width: 100%; }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-align-left { text-align: left; }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-align-center { text-align: center; }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-align-default { display: table-cell !important; vertical-align: middle !important; text-align: center !important; }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-align-right { text-align: right; }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedHeader img {
+                    border-top-left-radius: 4px;
+                    border-top-right-radius: 4px;
+                    height: auto;
+                    margin: 0 auto !important;
+                    max-width: 100%;
+                    width: undefinedpx;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody,
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody {
+                    padding: 20px 20px 0 20px;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody.ml-form-embedBodyHorizontal {
+                    padding-bottom: 0;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent,
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent {
+                    text-align: left;
+                    margin: 0 0 20px 0;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent h4,
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent h4 {
+                    color: #000000;
+                    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+                    font-size: 30px;
+                    font-weight: 400;
+                    margin: 0 0 10px 0;
+                    text-align: left;
+                    word-break: break-word;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent p,
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent p {
+                    color: #000000;
+                    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 20px;
+                    margin: 0 0 10px 0;
+                    text-align: left;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent ul,
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent ol,
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent ul,
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent ol {
+                    color: #000000;
+                    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+                    font-size: 14px;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent ol ol,
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent ol ol {
+                    list-style-type: lower-alpha;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent ol ol ol,
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent ol ol ol {
+                    list-style-type: lower-roman;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent p a,
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent p a {
+                    color: #000000;
+                    text-decoration: underline;
+                  }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-block-form .ml-field-group {
+                    text-align: left!important;
+                  }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-block-form .ml-field-group label {
+                    margin-bottom: 5px;
+                    color: #333333;
+                    font-size: 14px;
+                    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+                    font-weight: bold; font-style: normal; text-decoration: none;;
+                    display: inline-block;
+                    line-height: 20px;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent p:last-child,
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent p:last-child {
+                    margin: 0;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody form {
+                    margin: 0;
+                    width: 100%;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-formContent,
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow {
+                    margin: 0 0 20px 0;
+                    width: 100%;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow {
+                    float: left;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-formContent.horozintalForm {
+                    margin: 0;
+                    padding: 0 0 20px 0;
+                    width: 100%;
+                    height: auto;
+                    float: left;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow {
+                    margin: 0 0 10px 0;
+                    width: 100%;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow.ml-last-item {
+                    margin: 0;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow.ml-formfieldHorizintal {
+                    margin: 0;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input {
+                    background-color: #ffffff !important;
+                    color: #333333 !important;
+                    border-color: #cccccc;
+                    border-radius: 4px !important;
+                    border-style: solid !important;
+                    border-width: 1px !important;
+                    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+                    font-size: 14px !important;
+                    height: auto;
+                    line-height: 21px !important;
+                    margin-bottom: 0;
+                    margin-top: 0;
+                    margin-left: 0;
+                    margin-right: 0;
+                    padding: 10px 10px !important;
+                    width: 100% !important;
+                    box-sizing: border-box !important;
+                    max-width: 100% !important;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input::-webkit-input-placeholder,
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow input::-webkit-input-placeholder { color: #333333; }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input::-moz-placeholder,
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow input::-moz-placeholder { color: #333333; }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input:-ms-input-placeholder,
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow input:-ms-input-placeholder { color: #333333; }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input:-moz-placeholder,
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow input:-moz-placeholder { color: #333333; }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow textarea, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow textarea {
+                    background-color: #ffffff !important;
+                    color: #333333 !important;
+                    border-color: #cccccc;
+                    border-radius: 4px !important;
+                    border-style: solid !important;
+                    border-width: 1px !important;
+                    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+                    font-size: 14px !important;
+                    height: auto;
+                    line-height: 21px !important;
+                    margin-bottom: 0;
+                    margin-top: 0;
+                    padding: 10px 10px !important;
+                    width: 100% !important;
+                    box-sizing: border-box !important;
+                    max-width: 100% !important;
+                  }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow .custom-radio .custom-control-label::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow .custom-radio .custom-control-label::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow .custom-checkbox .custom-control-label::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow .custom-checkbox .custom-control-label::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedPermissions .ml-form-embedPermissionsOptionsCheckbox .label-description::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-interestGroupsRow .ml-form-interestGroupsRowCheckbox .label-description::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow .label-description::before {
+                      border-color: #cccccc!important;
+                      background-color: #ffffff!important;
+                  }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input.custom-control-input[type="checkbox"]{
+                    box-sizing: border-box;
+                    padding: 0;
+                    position: absolute;
+                    z-index: -1;
+                    opacity: 0;
+                    margin-top: 5px;
+                    margin-left: -1.5rem;
+                    overflow: visible;
+                  }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow .custom-checkbox .custom-control-label::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow .custom-checkbox .custom-control-label::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedPermissions .ml-form-embedPermissionsOptionsCheckbox .label-description::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-interestGroupsRow .ml-form-interestGroupsRowCheckbox .label-description::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow .label-description::before {
+                    border-radius: 4px!important;
+                  }
+
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow input[type=checkbox]:checked~.label-description::after, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedPermissions .ml-form-embedPermissionsOptionsCheckbox input[type=checkbox]:checked~.label-description::after, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow .custom-checkbox .custom-control-input:checked~.custom-control-label::after, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow .custom-checkbox .custom-control-input:checked~.custom-control-label::after, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-interestGroupsRow .ml-form-interestGroupsRowCheckbox input[type=checkbox]:checked~.label-description::after {
+                    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+                  }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow .custom-radio .custom-control-input:checked~.custom-control-label::after, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow .custom-radio .custom-control-input:checked~.custom-control-label::after {
+                    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+                  }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow .custom-radio .custom-control-input:checked~.custom-control-label::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow .custom-radio .custom-control-input:checked~.custom-control-label::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow .custom-checkbox .custom-control-input:checked~.custom-control-label::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow .custom-checkbox .custom-control-input:checked~.custom-control-label::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedPermissions .ml-form-embedPermissionsOptionsCheckbox input[type=checkbox]:checked~.label-description::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-interestGroupsRow .ml-form-interestGroupsRowCheckbox input[type=checkbox]:checked~.label-description::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow input[type=checkbox]:checked~.label-description::before  {
+                      border-color: #000000!important;
+                      background-color: #000000!important;
+                  }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow .custom-radio .custom-control-label::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow .custom-radio .custom-control-label::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow .custom-radio .custom-control-label::after, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow .custom-radio .custom-control-label::after, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow .custom-checkbox .custom-control-label::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow .custom-checkbox .custom-control-label::after, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow .custom-checkbox .custom-control-label::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow .custom-checkbox .custom-control-label::after {
+                       top: 2px;
+                       box-sizing: border-box;
+                  }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedPermissions .ml-form-embedPermissionsOptionsCheckbox .label-description::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedPermissions .ml-form-embedPermissionsOptionsCheckbox .label-description::after, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow .label-description::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow .label-description::after {
+                       top: 0px!important;
+                       box-sizing: border-box!important;
+                  }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow .label-description::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow .label-description::after {
+                    top: 0px!important;
+                       box-sizing: border-box!important;
+                  }
+
+                   #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-interestGroupsRow .ml-form-interestGroupsRowCheckbox .label-description::after {
+                        top: 0px!important;
+                        box-sizing: border-box!important;
+                        position: absolute;
+                        left: -1.5rem;
+                        display: block;
+                        width: 1rem;
+                        height: 1rem;
+                        content: "";
+                   }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-interestGroupsRow .ml-form-interestGroupsRowCheckbox .label-description::before {
+                    top: 0px!important;
+                    box-sizing: border-box!important;
+                  }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .custom-control-label::before {
+                      position: absolute;
+                      top: 4px;
+                      left: -1.5rem;
+                      display: block;
+                      width: 16px;
+                      height: 16px;
+                      pointer-events: none;
+                      content: "";
+                      background-color: #ffffff;
+                      border: #adb5bd solid 1px;
+                      border-radius: 50%;
+                  }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .custom-control-label::after {
+                      position: absolute;
+                      top: 2px!important;
+                      left: -1.5rem;
+                      display: block;
+                      width: 1rem;
+                      height: 1rem;
+                      content: "";
+                  }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedPermissions .ml-form-embedPermissionsOptionsCheckbox .label-description::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-interestGroupsRow .ml-form-interestGroupsRowCheckbox .label-description::before, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow .label-description::before {
+                      position: absolute;
+                      top: 4px;
+                      left: -1.5rem;
+                      display: block;
+                      width: 16px;
+                      height: 16px;
+                      pointer-events: none;
+                      content: "";
+                      background-color: #ffffff;
+                      border: #adb5bd solid 1px;
+                      border-radius: 50%;
+                  }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedPermissions .ml-form-embedPermissionsOptionsCheckbox .label-description::after {
+                      position: absolute;
+                      top: 0px!important;
+                      left: -1.5rem;
+                      display: block;
+                      width: 1rem;
+                      height: 1rem;
+                      content: "";
+                  }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow .label-description::after {
+                      position: absolute;
+                      top: 0px!important;
+                      left: -1.5rem;
+                      display: block;
+                      width: 1rem;
+                      height: 1rem;
+                      content: "";
+                  }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .custom-radio .custom-control-label::after {
+                      background: no-repeat 50%/50% 50%;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .custom-checkbox .custom-control-label::after, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedPermissions .ml-form-embedPermissionsOptionsCheckbox .label-description::after, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-interestGroupsRow .ml-form-interestGroupsRowCheckbox .label-description::after, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow .label-description::after {
+                      background: no-repeat 50%/50% 50%;
+                  }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow .custom-control, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow .custom-control {
+                    position: relative;
+                    display: block;
+                    min-height: 1.5rem;
+                    padding-left: 1.5rem;
+                  }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow .custom-radio .custom-control-input, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow .custom-radio .custom-control-input, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow .custom-checkbox .custom-control-input, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow .custom-checkbox .custom-control-input {
+                      position: absolute;
+                      z-index: -1;
+                      opacity: 0;
+                      box-sizing: border-box;
+                      padding: 0;
+                  }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow .custom-radio .custom-control-label, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow .custom-radio .custom-control-label, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow .custom-checkbox .custom-control-label, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow .custom-checkbox .custom-control-label {
+                      color: #000000;
+                      font-size: 12px!important;
+                      font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+                      line-height: 22px;
+                      margin-bottom: 0;
+                      position: relative;
+                      vertical-align: top;
+                      font-style: normal;
+                      font-weight: 700;
+                  }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow .custom-select, #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow .custom-select {
+                    background-color: #ffffff !important;
+                    color: #333333 !important;
+                    border-color: #cccccc;
+                    border-radius: 4px !important;
+                    border-style: solid !important;
+                    border-width: 1px !important;
+                    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+                    font-size: 14px !important;
+                    line-height: 20px !important;
+                    margin-bottom: 0;
+                    margin-top: 0;
+                    padding: 10px 28px 10px 12px !important;
+                    width: 100% !important;
+                    box-sizing: border-box !important;
+                    max-width: 100% !important;
+                    height: auto;
+                    display: inline-block;
+                    vertical-align: middle;
+                    background: url('https://assets.mlcdn.com/ml/images/default/dropdown.svg') no-repeat right .75rem center/8px 10px;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                  }
+
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow {
+                    height: auto;
+                    width: 100%;
+                    float: left;
+                  }
+                  .ml-form-formContent.horozintalForm .ml-form-horizontalRow .ml-input-horizontal { width: 70%; float: left; }
+                  .ml-form-formContent.horozintalForm .ml-form-horizontalRow .ml-button-horizontal { width: 30%; float: left; }
+                  .ml-form-formContent.horozintalForm .ml-form-horizontalRow .ml-button-horizontal.labelsOn { padding-top: 25px;  }
+                  .ml-form-formContent.horozintalForm .ml-form-horizontalRow .horizontal-fields { box-sizing: border-box; float: left; padding-right: 10px;  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow input {
+                    background-color: #ffffff;
+                    color: #333333;
+                    border-color: #cccccc;
+                    border-radius: 4px;
+                    border-style: solid;
+                    border-width: 1px;
+                    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+                    font-size: 14px;
+                    line-height: 20px;
+                    margin-bottom: 0;
+                    margin-top: 0;
+                    padding: 10px 10px;
+                    width: 100%;
+                    box-sizing: border-box;
+                    overflow-y: initial;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow button {
+                    background-color: #000000 !important;
+                    border-color: #000000;
+                    border-style: solid;
+                    border-width: 1px;
+                    border-radius: 4px;
+                    box-shadow: none;
+                    color: #ffffff !important;
+                    cursor: pointer;
+                    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+                    font-size: 14px !important;
+                    font-weight: 700;
+                    line-height: 20px;
+                    margin: 0 !important;
+                    padding: 10px !important;
+                    width: 100%;
+                    height: auto;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow button:hover {
+                    background-color: #333333 !important;
+                    border-color: #333333 !important;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow input[type="checkbox"] {
+                    box-sizing: border-box;
+                    padding: 0;
+                    position: absolute;
+                    z-index: -1;
+                    opacity: 0;
+                    margin-top: 5px;
+                    margin-left: -1.5rem;
+                    overflow: visible;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow .label-description {
+                    color: #000000;
+                    display: block;
+                    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+                    font-size: 12px;
+                    text-align: left;
+                    margin-bottom: 0;
+                    position: relative;
+                    vertical-align: top;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow label {
+                    font-weight: normal;
+                    margin: 0;
+                    padding: 0;
+                    position: relative;
+                    display: block;
+                    min-height: 24px;
+                    padding-left: 24px;
+
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow label a {
+                    color: #000000;
+                    text-decoration: underline;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow label p {
+                    color: #000000 !important;
+                    font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
+                    font-size: 12px !important;
+                    font-weight: normal !important;
+                    line-height: 18px !important;
+                    padding: 0 !important;
+                    margin: 0 5px 0 0 !important;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow label p:last-child {
+                    margin: 0;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit {
+                    margin: 0 0 20px 0;
+                    float: left;
+                    width: 100%;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button {
+                    background-color: #000000 !important;
+                    border: none !important;
+                    border-radius: 4px !important;
+                    box-shadow: none !important;
+                    color: #ffffff !important;
+                    cursor: pointer;
+                    font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
+                    font-size: 14px !important;
+                    font-weight: 700 !important;
+                    line-height: 21px !important;
+                    height: auto;
+                    padding: 10px !important;
+                    width: 100% !important;
+                    box-sizing: border-box !important;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button.loading {
+                    display: none;
+                  }
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button:hover {
+                    background-color: #333333 !important;
+                  }
+                  .ml-subscribe-close {
+                    width: 30px;
+                    height: 30px;
+                    background: url('https://assets.mlcdn.com/ml/images/default/modal_close.png') no-repeat;
+                    background-size: 30px;
+                    cursor: pointer;
+                    margin-top: -10px;
+                    margin-right: -10px;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                  }
+                  .ml-error input, .ml-error textarea, .ml-error select {
+                    border-color: red!important;
+                  }
+
+                  .ml-error .custom-checkbox-radio-list {
+                    border: 1px solid red !important;
+                    border-radius: 4px;
+                    padding: 10px;
+                  }
+
+                  .ml-error .label-description,
+                  .ml-error .label-description p,
+                  .ml-error .label-description p a,
+                  .ml-error label:first-child {
+                    color: #ff0000 !important;
+                  }
+
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow.ml-error .label-description p,
+                  #mlb2-30048369.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow.ml-error .label-description p:first-letter {
+                    color: #ff0000 !important;
+                  }
+                        @media only screen and (max-width: 400px){
+
+                    .ml-form-embedWrapper.embedDefault, .ml-form-embedWrapper.embedPopup { width: 100%!important; }
+                    .ml-form-formContent.horozintalForm { float: left!important; }
+                    .ml-form-formContent.horozintalForm .ml-form-horizontalRow { height: auto!important; width: 100%!important; float: left!important; }
+                    .ml-form-formContent.horozintalForm .ml-form-horizontalRow .ml-input-horizontal { width: 100%!important; }
+                    .ml-form-formContent.horozintalForm .ml-form-horizontalRow .ml-input-horizontal > div { padding-right: 0px!important; padding-bottom: 10px; }
+                    .ml-form-formContent.horozintalForm .ml-button-horizontal { width: 100%!important; }
+                    .ml-form-formContent.horozintalForm .ml-button-horizontal.labelsOn { padding-top: 0px!important; }
+
+                  }
+                </style>
+                  
+                <div id="mlb2-30048369" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-30048369">
+                  <div class="ml-form-align-center ">
+                    <div class="ml-form-embedWrapper embedForm">
+
+                      <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+
+                        <div class="ml-form-embedContent">
+                          <h4>Get access to the savings calculator</h4>
+                          <p>Signup for the free savings calculator guide and more tips on how to save and make money</p>
+                        </div>
+
+                        <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/1752259/forms/163727681322485041/subscribe" data-code="" method="post" target="_blank">
+                          <div class="ml-form-formContent">
+                              <div class="ml-form-fieldRow ml-last-item">
+                                <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                                  <input aria-label="email" aria-required="true" type="email" class="form-control" data-inputmask="" name="fields[email]" placeholder="Email" autocomplete="email">
+                                </div>
+                              </div>
+                          </div>
+                    
+                          <input type="hidden" name="ml-submit" value="1">
+                          <div class="ml-form-embedSubmit">
+                              <button type="submit" class="primary">Subscribe</button>
+                            
+                            <button disabled="disabled" style="display: none;" type="button" class="loading">
+                              <div class="ml-form-embedSubmitLoad"></div>
+                              <span class="sr-only">Loading...</span>
+                            </button>
+                          </div>
+                          <input type="hidden" name="anticsrf" value="true">
+                        </form>
+                      </div>
+                      <div class="ml-form-successBody row-success" style="display: none">
+                        <div class="ml-form-successContent">
+                          <h4>Thank you!</h4>
+                          <p>You have successfully joined our subscriber list. The savings calculator will be sent to your e-mail right away.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <script>
+                function ml_webform_success_30048369() {
+                  var $ = ml_jQuery || jQuery;
+                  $('.ml-subscribe-form-30048369 .row-success').show();
+                  $('.ml-subscribe-form-30048369 .row-form').hide();
+                }
+                  </script>
+                  <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
+                    <script>
+                        fetch("https://assets.mailerlite.com/jsonp/1752259/forms/163727681322485041/takel")
+                    </script>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="padding: 40px 0; background: #333; color: white; text-align: center;">
+        <div class="container">
+            <p>&copy; 2025 Money Mechanics. Start your financial journey today.</p>
+            <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 10px;">
+                Free calculator • No spam • Unsubscribe anytime
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add some interactive animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe feature cards for animation
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
